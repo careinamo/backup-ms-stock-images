@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import hello from '@StockImages/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'ms-images',
@@ -41,7 +41,7 @@ const serverlessConfiguration: AWS = {
       target: 'node14',
       define: { 'require.resolve': undefined },
       platform: 'node',
-      concurrency: 10,
+      concurrency: 10
     },
     'serverless-offline': {
       httpPort: 4000,

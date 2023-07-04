@@ -1,13 +1,16 @@
+import { imagesService } from '../application';
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
 
-import schema from './schema';
+import schema from '../functions/schema';
 
 const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+
+  const images =  await imagesService.fetchImagesFromApis();
+
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
-    event,
+    images
   });
 };
 
