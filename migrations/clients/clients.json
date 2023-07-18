@@ -1,0 +1,57 @@
+[
+    {
+        "id": "15e70d027aba9cd719df89afbf03e7c306a3e62608d97d856ead2ac35162d07c",
+        "appActive": true,
+        "appUid": "XiDAIvmnmWWsIbL4sXiPtJE211l2",
+        "automaticReviews": false,
+        "bestTimes": {
+            "Friday": "12",
+            "Monday": "12",
+            "Saturday": "12",
+            "Sunday": "12",
+            "Thursday": "12",
+            "Tuesday": "12",
+            "Wednesday": "12"
+        },
+        "clientGroups": [
+            {
+                "id": "39a4f9c2cf859d23d2945bfa61f17823324d82d08dd75e53839c01e3b7457312",
+                "groupName": "Plumbers "
+            }
+        ],
+        "clientName": "Oasis Plumbing of Texas",
+        "countPosts": {
+            "error": 0,
+            "posted": 79,
+            "schedule": 801
+        },
+        "createdAt": 1681848342441,
+        "gmbId": "26391f35fdd245a1b7a138d8b478bf57",
+        "mergeFields": {
+            "~Address": "6651 Hightower St",
+            "~BestDish": "",
+            "~BestProduct": "",
+            "~BestService": "",
+            "~City": "Watauga, Texas",
+            "~Name": "Oasis Plumbing of Texas",
+            "~Phone": "(817)-880-9071",
+            "~Website": "www.oasisplumbingoftexas.com"
+        },
+        "smsCount": 13,
+        "socialnetworks": {
+            "facebook": true,
+            "facebookPage": "Oasis Plumbing of Texas",
+            "fbFailing": false,
+            "gmbFailing": false,
+            "googleMyBusiness": true,
+            "googleMyBusinessLocationName": "Oasis Plumbing of Texas (Mobile)",
+            "igFailing": false,
+            "twFailing": false,
+            "twitter": false,
+            "zoho": true,
+            "zohoId": "3359678000157147039"
+        },
+        "timeZone": "Central Daylight Time - (GMT-5)",
+        "yelpId": "6a690f2962484e6381c91cabf4093370"
+    }
+]

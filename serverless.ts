@@ -1,11 +1,14 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@StockImages/functions';
+// import hello from '@StockImages/functions';
+import { getExternalImage, useExternalImage } from '@ExternalApis/functions';
+import { loadImages, getStockImage } from '@StockImages/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'ms-images',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline',],
+  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dotenv-plugin'],
+  useDotenv: true,
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -30,7 +33,7 @@ const serverlessConfiguration: AWS = {
     ]
   },
   // import the function via paths
-  functions: { hello },
+  functions: { getExternalImage, useExternalImage, loadImages, getStockImage },
   package: { individually: true },
   custom: {
     esbuild: {

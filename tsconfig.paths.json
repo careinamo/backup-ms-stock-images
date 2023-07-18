@@ -4,6 +4,7 @@
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@StockImages/*": ["src/StockImages/*"],
+      "@ExternalApis/*": ["src/ExternalApis/*"],
       "@libs/*": ["src/libs/*"]
     }
   }

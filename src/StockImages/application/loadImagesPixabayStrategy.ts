@@ -1,18 +1,18 @@
 import { ResquestApi } from '@StockImages/domain/ResquestApi';
-import { LoadImagesStrategy } from '../application/LoadImagesStrategy';
+import { LoadImagesStrategy } from './LoadImagesStrategy';
 
-const UNSPLASH_LIMIT_PER_PAGE: number = parseInt(process.env.UNSPLASH_LIMIT_PER_PAGE);
-const UNSPLASH_LIMIT_IMAGES: number = parseInt(process.env.UNSPLASH_LIMIT_IMAGES);
+const PIXABAY_LIMIT_PER_PAGE: number = parseInt(process.env.PIXABAY_LIMIT_PER_PAGE);
+const PIXABAY_LIMIT_IMAGES: number = parseInt(process.env.PIXABAY_LIMIT_IMAGES);
 
-class loadImagesUnsplashStrategy implements LoadImagesStrategy {
+class loadImagesPixabayStrategy implements LoadImagesStrategy {
     constructor(
-        private readonly resquestApi: ResquestApi,
+        private readonly resquestApi: ResquestApi
     ) { }
     public async loadImages(keyword: string): Promise<any> {
         console.log('Start loadImagesUnsplashStrategy.loadImages');
         let collection: any;
 
-        const totalPages = Math.ceil(UNSPLASH_LIMIT_IMAGES / UNSPLASH_LIMIT_PER_PAGE); 
+        const totalPages = Math.ceil(PIXABAY_LIMIT_IMAGES / PIXABAY_LIMIT_PER_PAGE); 
 
         const objects = [];
         let counter = 1;
@@ -20,12 +20,12 @@ class loadImagesUnsplashStrategy implements LoadImagesStrategy {
         for (let page = 1; page <= totalPages; page++) {
             try {
                 const response = await this.resquestApi.searchImagesByPagination(page, keyword);
-                const data = response.results;
+                const data = response.hits;
                 collection = data.map((obj) => {
                     return {
-                        url: obj.urls.regular,
+                        url: obj.webformatURL,
                         orderNewImage: counter++,
-                        source: 'unsplash'
+                        source: 'pixabay'
                     };
                 }
                 );
@@ -34,16 +34,15 @@ class loadImagesUnsplashStrategy implements LoadImagesStrategy {
                 console.error('Error. ........:', error.message);
                 break;
             }
-            setTimeout(() => {
-                console.log(`Elemento:`);
-              }, Math.random() * 2000 + 1000);
         }
         
+
+
         console.log('End loadImagesUnsplashStrategy.loadImages');
         return objects;
     }
 }
-export default loadImagesUnsplashStrategy;
+export default loadImagesPixabayStrategy;
 
 
 // for (let page = 1; page <= totalPages; page++) {

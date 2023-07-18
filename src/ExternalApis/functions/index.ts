@@ -1,14 +1,14 @@
 import schema from './schema';
 import { handlerPath } from '@libs/handler-resolver';
 
-export const loadImages = {
-  handler: `${handlerPath(__dirname)}/handler.loadImages`,
+export const getExternalImage = {
+  handler: `${handlerPath(__dirname)}/handler.getExternalImage`,
   timeout: 900,
   events: [
     {
       http: {
         method: 'post',
-        path: 'loadImages',
+        path: 'searchImage',
         request: {
           schemas: {
             'application/json': schema,
@@ -19,14 +19,14 @@ export const loadImages = {
   ],
 };
 
-export const getStockImage = {
-  handler: `${handlerPath(__dirname)}/handler.getStockImage`,
+export const useExternalImage = {
+  handler: `${handlerPath(__dirname)}/handler.useExternalImage`,
   timeout: 900,
   events: [
     {
       http: {
         method: 'post',
-        path: 'getStockImage',
+        path: 'useExternalImage',
       },
     },
   ],

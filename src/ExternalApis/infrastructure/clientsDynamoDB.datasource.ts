@@ -9,14 +9,21 @@ class clientsDynamoDB implements ClientsRepository {
     const params = {
       TableName: process.env.CLIENTS_TABLE,
       Key: {
-        id: clientId
+        id: clientId,
       }
     };
+
+    console.log(`resulte save in database ${JSON.stringify(params)}`);
+
+    // const result = await document
+    // .update(params)
+    // .promise();
+    // console.log(`result save in database ${result}`);
 
     const result = await document
     .get(params)
     .promise();
-    console.log(`Results from ClientsRepository.getById in database ${JSON.stringify(result)}`);
+    console.log(`result save in database ${JSON.stringify(result)}`);
 
     return result.Item;
   }
