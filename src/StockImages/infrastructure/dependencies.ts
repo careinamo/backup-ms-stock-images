@@ -22,8 +22,8 @@ const loadImagesUnsplashStrategy = new LoadImagesUnsplashStrategy(apiUnsplashCli
 const loadImagesPixabayStrategy = new LoadImagesPixabayStrategy(apiPixabayClient);
 const loadImagesGMBStrategy = new LoadImagesGMBStrategy(apiPixabayClient);
 
-//const fetchmagesService = new FetchmagesService([loadImagesUnsplashStrategy, loadImagesPixabayStrategy]);
-const fetchmagesService = new FetchmagesService([loadImagesGMBStrategy]);
+const fetchmagesService = new FetchmagesService([loadImagesUnsplashStrategy, loadImagesPixabayStrategy]);
+//const fetchmagesService = new FetchmagesService([loadImagesGMBStrategy]);
 
 const imagesService = new ImagesService(
     clientsRepository,

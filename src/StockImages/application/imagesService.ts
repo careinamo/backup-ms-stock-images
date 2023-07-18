@@ -24,9 +24,9 @@ export class ImagesService {
       }
       const images = await this.fetchImagesService.loadImages(keywords);
 
-      // images.forEach((item) => {
-      //   this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage);
-      // });      
+      images.forEach((item) => {
+        this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage);
+      });      
       response = images;
     } catch (err) {
       console.log(err);
