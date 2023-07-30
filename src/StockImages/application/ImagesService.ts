@@ -1,6 +1,7 @@
-import { ClientsRepository } from "../domain/clientsRespository";
-import { ImagesRepository } from "../domain/imagesRepository";
-import { FetchmagesService } from "../application/FetchmagesService";
+import { ClientsRepository } from "../domain/repositories/ClientsRespository";
+import { ImagesRepository } from "../domain/repositories/ImagesRepository";
+import { FetchmagesService } from "./FetchmagesService";
+//import * as freepik from './freepik.json';
 
 
 export class ImagesService {
@@ -13,7 +14,8 @@ export class ImagesService {
     let response: any;
     try {
       const client = await this.clientsRepository.getById(clientId);
-      const keywords = 'plumbing';//client.clientGroups[0].groupName;
+      const keywords = client.clientGroups[0].groupName;
+      //const keywords = 'plumbing';
       const sockProfile = await this.imagesRepository.getProfileByClientId(clientId);
       let nextPage = 1;
       if (!sockProfile) {
@@ -22,11 +24,13 @@ export class ImagesService {
       } else {
         nextPage = sockProfile.unsplashPage + 1;
       }
-      const images = await this.fetchImagesService.loadImages(keywords);
+
+      console.log('fetchImagesService......................................................');
+      const images = await this.fetchImagesService.loadImages(clientId, keywords);
 
       images.forEach((item) => {
-        this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage);
-      });      
+        this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage, item.source);
+      }); 
       response = images;
     } catch (err) {
       console.log(err);
@@ -49,7 +53,7 @@ export class ImagesService {
         }        
       } else {
         await this.imagesRepository.deleteNewStockImage(imageSelected.PK, imageSelected.SK);
-        await this.imagesRepository.storeImagesURL(clientId, imageSelected.SK);
+        await this.imagesRepository.storeStockImage(clientId, imageSelected.SK, imageSelected.source);
       }
       if (!imageSelected) {
         const stockImageWarning = await this.imagesRepository.searchImageByLastUse(clientId, 0)

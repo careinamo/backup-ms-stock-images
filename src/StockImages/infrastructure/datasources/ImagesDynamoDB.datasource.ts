@@ -1,5 +1,5 @@
-import { ImagesRepository } from '../domain/imagesRepository';
-import { document } from "../../libs/dynamoClient"
+import { ImagesRepository } from '../../domain/repositories/ImagesRepository';
+import { document } from "../../../libs/dynamoClient"
 import { performance } from 'perf_hooks';
 
 // import { v4 as uuidv4 } from 'uuid';
@@ -68,13 +68,14 @@ class ImagesDynamoDB implements ImagesRepository {
     console.log(`result update by client id database table images-api-by-clients  ${result}`);    
   }
 
-  public async storeImagesURL(clientId: string, sourceUrl: string): Promise<any> {
+  public async storeStockImage(clientId: string, sourceUrl: string, source: string): Promise<any> {
     console.log(`Start imagesRepository.storeImagesURL get in table: ${process.env.STOCK_IMAGES_TABLE}`);
 
     const item = {
       'PK': `s#${clientId}`,
       'SK': sourceUrl,
       'lastUse': Math.floor(Date.now() / 1000),
+      'source': source
       // Agrega aquí los demás atributos del elemento
     };
     
@@ -91,13 +92,14 @@ class ImagesDynamoDB implements ImagesRepository {
     console.log(`End imagesRepository.storeImagesURL`);    
   }
 
-  public async storeNewStockImage(clientId: string, sourceUrl: string, orderNewImage: number): Promise<any> {
+  public async storeNewStockImage(clientId: string, sourceUrl: string, orderNewImage: number, source: string): Promise<any> {
     console.log(`Start imagesRepository.storeImagesURL get in table: ${process.env.STOCK_IMAGES_TABLE}`);
 
     const item = {
       'PK': `ns#${clientId}`,
       'SK': sourceUrl,
-      'orderNewImage': orderNewImage
+      'orderNewImage': orderNewImage,
+      'source': source
       // Agrega aquí los demás atributos del elemento
     };
     

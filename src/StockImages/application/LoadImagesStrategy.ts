@@ -1,3 +1,3 @@
 export interface LoadImagesStrategy {
-    loadImages(keyword: string): Promise<any>;
-  }
+  loadImages(clientId: string, keyword: string): Promise<any>;
+}

@@ -3,6 +3,7 @@ import type { AWS } from '@serverless/typescript';
 // import hello from '@StockImages/functions';
 import { getExternalImage, useExternalImage } from '@ExternalApis/functions';
 import { loadImages, getStockImage } from '@StockImages/functions';
+import dynamoDbConfig from 'resources/dynamodb';
 
 const serverlessConfiguration: AWS = {
   service: 'ms-images',
@@ -34,6 +35,7 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { getExternalImage, useExternalImage, loadImages, getStockImage },
+  resources: dynamoDbConfig,
   package: { individually: true },
   custom: {
     esbuild: {

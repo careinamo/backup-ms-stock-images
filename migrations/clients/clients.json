@@ -1,9 +1,9 @@
 [
     {
-        "id": "15e70d027aba9cd719df89afbf03e7c306a3e62608d97d856ead2ac35162d07c",
+        "id": "7db2a19b192f3c4f90bc9257223e6d1df6253c3917d1c4a8f2c729199fc9ebb9",
         "appActive": true,
-        "appUid": "XiDAIvmnmWWsIbL4sXiPtJE211l2",
-        "automaticReviews": false,
+        "appUid": "1M8ovgqv86cWRgOIbd5ceaYMUPX2",
+        "automaticReviews": true,
         "bestTimes": {
             "Friday": "12",
             "Monday": "12",
@@ -19,39 +19,39 @@
                 "groupName": "Plumbers "
             }
         ],
-        "clientName": "Oasis Plumbing of Texas",
+        "clientName": "Emergency Plumbing",
         "countPosts": {
             "error": 0,
-            "posted": 79,
-            "schedule": 801
+            "posted": 236,
+            "schedule": 640
         },
-        "createdAt": 1681848342441,
-        "gmbId": "26391f35fdd245a1b7a138d8b478bf57",
+        "createdAt": 1669822439262,
+        "gmbId": "77fc7226e05843f5839e417af6cc23df",
         "mergeFields": {
-            "~Address": "6651 Hightower St",
+            "~Address": "",
             "~BestDish": "",
             "~BestProduct": "",
             "~BestService": "",
-            "~City": "Watauga, Texas",
-            "~Name": "Oasis Plumbing of Texas",
-            "~Phone": "(817)-880-9071",
-            "~Website": "www.oasisplumbingoftexas.com"
+            "~City": "Highland Park",
+            "~Name": "Emergency Plumbing",
+            "~Phone": "(312) 532-6435",
+            "~Website": "https://emergencyplumbingusa.com/"
         },
-        "smsCount": 13,
+        "smsCount": 1,
         "socialnetworks": {
             "facebook": true,
-            "facebookPage": "Oasis Plumbing of Texas",
+            "facebookPage": "Emergency Plumbing",
             "fbFailing": false,
             "gmbFailing": false,
             "googleMyBusiness": true,
-            "googleMyBusinessLocationName": "Oasis Plumbing of Texas (Mobile)",
+            "googleMyBusinessLocationName": "Emergency Plumbing",
             "igFailing": false,
             "twFailing": false,
             "twitter": false,
             "zoho": true,
-            "zohoId": "3359678000157147039"
+            "zohoId": "3359678000145315007"
         },
-        "timeZone": "Central Daylight Time - (GMT-5)",
-        "yelpId": "6a690f2962484e6381c91cabf4093370"
+        "timeZone": "Eastern Daylight Time - (GMT-4)",
+        "yelpId": "fcceefc31948491ca6ab50678af040a6"
     }
 ]

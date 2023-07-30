@@ -8,8 +8,7 @@ const options = {
 };
 
 const isOffline = () => {
-  // return process.env.IS_OFFLINE;
-  return true;
+  return process.env.IS_OFFLINE
 };
 
 export const document = isOffline()

@@ -5,12 +5,13 @@ export class FetchmagesService {
     constructor(
       private readonly collection: LoadImagesStrategy[]
     ) {}
-    async loadImages(keywords:string) {
+    async loadImages(clientId:string, keywords:string) {
         let response: any[] = [];
         try {
           for (const strategy of this.collection) {
             try {
-              const result = await strategy.loadImages(keywords);
+              console.log('Strategy......................................................');
+              const result = await strategy.loadImages(clientId, keywords);
               response.push(...result);
             } catch (error) {
               console.error('Error al cargar imágenes:', error);
@@ -29,7 +30,7 @@ export class FetchmagesService {
       
 
         } catch (err) {
-        console.log(err);
+          console.log(err);
         }
         return response;
     }

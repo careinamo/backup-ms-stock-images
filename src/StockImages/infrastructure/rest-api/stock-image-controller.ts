@@ -1,4 +1,4 @@
-import { ImagesService } from '../../application/imagesService';
+import { ImagesService } from '../../application/ImagesService';
 
 export class StockImageController {
   constructor(private readonly imagesService: ImagesService) {}

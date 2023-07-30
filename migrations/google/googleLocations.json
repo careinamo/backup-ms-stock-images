@@ -1,0 +1,20 @@
+[
+    {
+        "id": "8461638979621792813",
+        "assignedClient": "7db2a19b192f3c4f90bc9257223e6d1df6253c3917d1c4a8f2c729199fc9ebb9",
+        "locationName": "Emergency Plumbing",
+        "locationState": {
+            "canDelete": true,
+            "canHaveBusinessCalls": true,
+            "canModifyServiceList": true,
+            "hasGoogleUpdated": true,
+            "hasVoiceOfMerchant": true,
+            "mapsUri": "https://maps.google.com/maps?cid=7992754592864273338",
+            "newReviewUri": "https://search.google.com/local/writereview?placeid=ChIJ7RaryKeWUmMRugOMbPT3624",
+            "placeId": "ChIJ7RaryKeWUmMRugOMbPT3624"
+        },
+        "locationUrl": "accounts/106012573974671584928/locations/8461638979621792813",
+        "tokenData": "106012573974671584928",
+        "updatedAt": "7/27/23, 2:30:52 PM UTC"
+    }
+]

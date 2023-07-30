@@ -1,4 +1,6 @@
 import { ResquestApi } from '@StockImages/domain/ResquestApi';
+import { GoogleLocationsRespository } from "../domain/repositories/GoogleLocationsRespository";
+import { GoogleTokensRepository } from "../domain/repositories/GoogleTokensRepository";
 import { LoadImagesStrategy } from './LoadImagesStrategy';
 
 const PIXABAY_LIMIT_PER_PAGE: number = parseInt(process.env.PIXABAY_LIMIT_PER_PAGE);
@@ -6,36 +8,35 @@ const PIXABAY_LIMIT_IMAGES: number = parseInt(process.env.PIXABAY_LIMIT_IMAGES);
 
 class loadImagesGMBStrategy implements LoadImagesStrategy {
     constructor(
-        private readonly resquestApi: ResquestApi
+        private readonly resquestApi: ResquestApi,
+        private readonly googleLocationsRespository: GoogleLocationsRespository,
+        private readonly googleTokensRepository: GoogleTokensRepository
     ) { }
-    public async loadImages(keyword: string): Promise<any> {
+    public async loadImages(clientId: string, keyword: string): Promise<any> {
         console.log('Start loadImagesUnsplashStrategy.loadImages');
         let collection: any;
 
-        const totalPages = Math.ceil(PIXABAY_LIMIT_IMAGES / PIXABAY_LIMIT_PER_PAGE); 
-
         const objects = [];
-        let counter = 1;
+        try {
 
-        for (let page = 1; page <= totalPages; page++) {
-            try {
-                const response = await this.resquestApi.searchImagesByPagination(page, keyword);
-                const data = response.hits;
-                collection = data.map((obj) => {
-                    return {
-                        url: obj.webformatURL,
-                        orderNewImage: counter++,
-                        source: 'pixabay'
-                    };
-                }
-                );
-                objects.push(...collection);
-            } catch (error) {
-                console.error('Error. ........:', error.message);
-                break;
+            const googleLocation = await this.googleLocationsRespository.getByClientId(clientId);
+            const googleToken = await this.googleTokensRepository.getById(googleLocation.tokenData);
+            const response = await this.resquestApi.searchImagesByPagination(googleLocation.id, googleToken.access_token.replace(/\r?\n$/, ''));
+
+            const data = response.mediaItems;
+            let counter = 1
+            collection = data.map((obj) => {
+                return {
+                    url: obj.googleUrl,
+                    orderNewImage: counter++,
+                    source: 'gmb'
+                };
             }
+            );
+            return collection;
+        } catch (error) {
+            console.error('Error. ........:', error.message);
         }
-        
 
 
         console.log('End loadImagesUnsplashStrategy.loadImages');

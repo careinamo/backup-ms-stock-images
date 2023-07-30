@@ -8,7 +8,7 @@ class loadImagesUnsplashStrategy implements LoadImagesStrategy {
     constructor(
         private readonly resquestApi: ResquestApi,
     ) { }
-    public async loadImages(keyword: string): Promise<any> {
+    public async loadImages(clientId: string, keyword: string): Promise<any> {
         console.log('Start loadImagesUnsplashStrategy.loadImages');
         let collection: any;
 

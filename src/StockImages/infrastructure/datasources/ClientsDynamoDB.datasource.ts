@@ -1,5 +1,5 @@
-import { ClientsRepository } from '../domain/clientsRespository';
-import { document } from "../../libs/dynamoClient"
+import { ClientsRepository } from '../../domain/repositories/ClientsRespository';
+import { document } from "../../../libs/dynamoClient"
 // import { v4 as uuidv4 } from 'uuid';
 
 class clientsDynamoDB implements ClientsRepository {
