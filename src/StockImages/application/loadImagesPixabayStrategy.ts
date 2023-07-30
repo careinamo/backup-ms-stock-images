@@ -9,7 +9,7 @@ class loadImagesPixabayStrategy implements LoadImagesStrategy {
         private readonly resquestApi: ResquestApi
     ) { }
     public async loadImages(clientId: string, keyword: string): Promise<any> {
-        console.log('Start loadImagesUnsplashStrategy.loadImages');
+        console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId ${clientId}`);
         let collection: any;
 
         const totalPages = Math.ceil(PIXABAY_LIMIT_IMAGES / PIXABAY_LIMIT_PER_PAGE); 
