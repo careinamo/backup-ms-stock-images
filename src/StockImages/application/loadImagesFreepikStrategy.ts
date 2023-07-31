@@ -1,18 +1,19 @@
 import { ResquestApi } from '@StockImages/domain/ResquestApi';
 import { LoadImagesStrategy } from './LoadImagesStrategy';
 
-const PIXABAY_LIMIT_PER_PAGE: number = parseInt(process.env.PIXABAY_LIMIT_PER_PAGE);
-const PIXABAY_LIMIT_IMAGES: number = parseInt(process.env.PIXABAY_LIMIT_IMAGES);
+const FREEPIK_LIMIT_PER_PAGE: number = parseInt(process.env.FREEPIK_LIMIT_PER_PAGE);
+const FREEPIK_LIMIT_IMAGES: number = parseInt(process.env.FREEPIK_LIMIT_IMAGES);
 
-class loadImagesPixabayStrategy implements LoadImagesStrategy {
+class loadImagesFreepikStrategy implements LoadImagesStrategy {
     constructor(
-        private readonly resquestApi: ResquestApi
+        private readonly resquestApi: ResquestApi,
     ) { }
     public async loadImages(clientId: string, keyword: string): Promise<any> {
-        console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId: ${clientId} with keyword: ${keyword}`);
+        console.log(`Start loadImagesFreepikStrategy.loadImages  for clientId: ${clientId} with keyword: ${keyword}`);
+
         let collection: any;
 
-        const totalPages = Math.ceil(PIXABAY_LIMIT_IMAGES / PIXABAY_LIMIT_PER_PAGE); 
+        const totalPages = Math.ceil(FREEPIK_LIMIT_IMAGES / FREEPIK_LIMIT_PER_PAGE);
 
         const objects = [];
         let counter = 1;
@@ -20,12 +21,12 @@ class loadImagesPixabayStrategy implements LoadImagesStrategy {
         for (let page = 1; page <= totalPages; page++) {
             try {
                 const response = await this.resquestApi.searchImagesByPagination(page, keyword);
-                const data = response.hits;
+                const data = response.data;
                 collection = data.map((obj) => {
                     return {
-                        url: obj.webformatURL,
+                        url: obj.image.source.url,
                         orderNewImage: counter++,
-                        source: 'pixabay'
+                        source: 'freepik'
                     };
                 }
                 );
@@ -36,13 +37,11 @@ class loadImagesPixabayStrategy implements LoadImagesStrategy {
             }
         }
         
-
-
-        console.log('End loadImagesUnsplashStrategy.loadImages');
+        console.log('End loadImagesFreepikStrategy.loadImages');
         return objects;
     }
 }
-export default loadImagesPixabayStrategy;
+export default loadImagesFreepikStrategy;
 
 
 // for (let page = 1; page <= totalPages; page++) {

@@ -9,7 +9,7 @@ class loadImagesUnsplashStrategy implements LoadImagesStrategy {
         private readonly resquestApi: ResquestApi,
     ) { }
     public async loadImages(clientId: string, keyword: string): Promise<any> {
-        console.log('Start loadImagesUnsplashStrategy.loadImages');
+        console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId: ${clientId} with keyword: ${keyword}`);
         let collection: any;
 
         const totalPages = Math.ceil(UNSPLASH_LIMIT_IMAGES / UNSPLASH_LIMIT_PER_PAGE); 

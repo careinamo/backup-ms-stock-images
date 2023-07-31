@@ -14,8 +14,8 @@ export class ImagesService {
     let response: any;
     try {
       const client = await this.clientsRepository.getById(clientId);
-      const keywords = client.clientGroups[0].groupName;
-      //const keywords = 'plumbing';
+      // const keywords = client.clientGroups[0].groupName;
+      const keywords = 'plumbing';
       const sockProfile = await this.imagesRepository.getProfileByClientId(clientId);
       let nextPage = 1;
       if (!sockProfile) {

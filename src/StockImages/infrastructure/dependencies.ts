@@ -10,10 +10,12 @@ import GoogleTokensDynamoDB from '../infrastructure/datasources/GoogleTokensDyna
 import LoadImagesUnsplashStrategy from '../application/loadImagesUnsplashStrategy';
 import LoadImagesPixabayStrategy from '../application/loadImagesPixabayStrategy';
 import LoadImagesGMBStrategy from '../application/loadImagesGMBStrategy';
+import LoadImagesFreepikStrategy from '../application/loadImagesFreepikStrategy';
 
 import { ApiUnsplashClient } from './httpsCalls/ApiUnsplashClient';
 import { ApiPixabayClient } from './httpsCalls/ApiPixabayClient';
 import { ApiGMBClient } from './httpsCalls/ApiGMBClient';
+import { ApiFreepikClient } from './httpsCalls/ApiFreepikClient';
 
 const clientsRepository = new ClientsDynamoDB();
 const imagesRepository = new ImagesDynamoDB();
@@ -22,13 +24,15 @@ const googleTokensDynamoDB = new GoogleTokensDynamoDB;
 
 const apiUnsplashClient = new ApiUnsplashClient();
 const apiPixabayClient = new ApiPixabayClient();
+const apiFreepikClient = new ApiFreepikClient();
 const apiGMBClient = new ApiGMBClient();
 
 const loadImagesUnsplashStrategy = new LoadImagesUnsplashStrategy(apiUnsplashClient);
 const loadImagesPixabayStrategy = new LoadImagesPixabayStrategy(apiPixabayClient);
+const loadImagesFreepikStrategy = new LoadImagesFreepikStrategy(apiFreepikClient);
 const loadImagesGMBStrategy = new LoadImagesGMBStrategy(apiGMBClient, googleLocationsDynamoDB, googleTokensDynamoDB);
 
-const fetchmagesService = new FetchmagesService([loadImagesGMBStrategy, loadImagesUnsplashStrategy, loadImagesPixabayStrategy]);
+const fetchmagesService = new FetchmagesService([loadImagesGMBStrategy, loadImagesUnsplashStrategy, loadImagesPixabayStrategy, loadImagesFreepikStrategy]);
 
 const imagesService = new ImagesService(
     clientsRepository,

@@ -10,7 +10,7 @@ class loadImagesGMBStrategy implements LoadImagesStrategy {
         private readonly googleTokensRepository: GoogleTokensRepository
     ) { }
     public async loadImages(clientId: string, keyword: string): Promise<any> {
-        console.log(`Start loadImagesUnsplashStrategy.loadImages with keyword ${keyword}`);
+        console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId: ${clientId} with keyword: ${keyword}`);
         let collection: any;
 
         const objects = [];
