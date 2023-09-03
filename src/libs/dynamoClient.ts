@@ -12,5 +12,5 @@ const isOffline = () => {
 };
 
 export const document = isOffline()
-  ? new DynamoDB.DocumentClient(options)
+  ? new DynamoDB.DocumentClient()
   : new DynamoDB.DocumentClient();

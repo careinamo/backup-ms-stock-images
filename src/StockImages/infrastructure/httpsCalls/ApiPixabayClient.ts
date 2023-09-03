@@ -14,8 +14,10 @@ export class ApiPixabayClient implements ResquestApi {
         url: `${PIXABAY_SEARCH_ENDPOINT}?key=${PIXABAY_API_KEY}&q=${keyword}&image_type=photo&per_page=${PIXABAY_LIMIT_PER_PAGE}&page=${page}`
       };
 
-      const unsplashResponse = await axios(configRequest);
-      response = unsplashResponse.data;
+      console.log(`tumadre 007 ${JSON.stringify(configRequest)}`)
+
+      const apiResponse = await axios(configRequest);
+      response = apiResponse.data;
     } catch (err) {
       console.log(err);
     }

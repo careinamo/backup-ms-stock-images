@@ -4,6 +4,7 @@ import { handlerPath } from '@libs/handler-resolver';
 export const loadImages = {
   handler: `${handlerPath(__dirname)}/handler.loadImages`,
   timeout: 900,
+  url: true,  
   events: [
     {
       http: {

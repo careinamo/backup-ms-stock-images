@@ -17,6 +17,7 @@
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
     "axios": "^1.4.0",
+    "dropbox": "^10.34.0",
     "nodemon": "^2.0.22"
   },
   "devDependencies": {

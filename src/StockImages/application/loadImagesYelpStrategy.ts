@@ -1,14 +1,14 @@
-import { ResquestApi } from '@StockImages/domain/ResquestApi';
+import { ResquestYelpApi } from '@StockImages/domain/Clients/ResquestYelpApi';
 import { LoadImagesStrategy } from './LoadImagesStrategy';
 
 const FREEPIK_LIMIT_PER_PAGE: number = parseInt(process.env.FREEPIK_LIMIT_PER_PAGE);
 const FREEPIK_LIMIT_IMAGES: number = parseInt(process.env.FREEPIK_LIMIT_IMAGES);
 
-class loadImagesFreepikStrategy implements LoadImagesStrategy {
+class loadImagesYelpStrategy implements LoadImagesStrategy {
     constructor(
-        private readonly resquestApi: ResquestApi,
+        private readonly resquestYelpApi: ResquestYelpApi,
     ) { }
-    public async loadImages(clientId: string, client: any, keyword: string): Promise<any> {
+    public async loadImages(clientId: any, client: any, keyword: string): Promise<any> {
         console.log(`Start loadImagesFreepikStrategy.loadImages  for clientId: ${clientId} with keyword: ${keyword}`);
 
         let collection: any;
@@ -17,31 +17,33 @@ class loadImagesFreepikStrategy implements LoadImagesStrategy {
 
         const objects = [];
         let counter = 1;
+        const objectsArray = [];
 
         for (let page = 1; page <= totalPages; page++) {
             try {
-                const response = await this.resquestApi.searchImagesByPagination(page, keyword);
+                const response = await this.resquestYelpApi.searchImages(client.clientName, client.mergeFields["~Phone"]);
                 const data = response.data;
-                collection = data.map((obj) => {
-                    return {
-                        url: obj.image.source.url,
+
+                for (const url in data) {
+                    const newObj = {
+                        url: url,
                         orderNewImage: counter++,
-                        source: 'freepik'
+                        source: 'yelp',
+                        description: data[url]
                     };
+                    objectsArray.push(newObj);
                 }
-                );
-                objects.push(...collection);
             } catch (error) {
                 console.error('Error. ........:', error.message);
                 break;
             }
         }
-        
+
         console.log('End loadImagesFreepikStrategy.loadImages');
-        return objects;
+        return objectsArray;
     }
 }
-export default loadImagesFreepikStrategy;
+export default loadImagesYelpStrategy;
 
 
 // for (let page = 1; page <= totalPages; page++) {

@@ -14,8 +14,20 @@ export class ImagesService {
     let response: any;
     try {
       const client = await this.clientsRepository.getById(clientId);
-      // const keywords = client.clientGroups[0].groupName;
-      const keywords = 'plumbing';
+      //const keywords = client.clientGroups[0].groupName;
+      let keywords = client.clientGroups[0].groupName;
+
+      switch (keywords) {
+        case 'A/C':
+          keywords = 'air-conditioning';
+          break;
+        case 'Realty Group':
+          keywords = 'Realty';
+          break;
+        default:
+          break;
+      }
+
       const sockProfile = await this.imagesRepository.getProfileByClientId(clientId);
       let nextPage = 1;
       if (!sockProfile) {
@@ -25,12 +37,13 @@ export class ImagesService {
         nextPage = sockProfile.unsplashPage + 1;
       }
 
-      console.log('fetchImagesService......................................................');
-      const images = await this.fetchImagesService.loadImages(clientId, keywords);
+      const images = await this.fetchImagesService.loadImages(clientId, client, keywords);
 
-      images.forEach((item) => {
-        this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage, item.source);
-      }); 
+      console.log('El valor de images es:' + images);
+
+      images.forEach(async (item) => {
+        await this.imagesRepository.storeNewStockImage(clientId, item.url, item.orderNewImage, item.source);
+      });
       response = images;
     } catch (err) {
       console.log(err);
@@ -45,12 +58,12 @@ export class ImagesService {
       let imageSelected = newsStockImage;
       if (!newsStockImage) {
         const now = Math.floor(Date.now() / 1000);
-        const timeAgo = now - (86400 * 60);
+        const timeAgo = now - (45 * 24 * 60 * 60);
         const stockImage = await this.imagesRepository.searchImageByLastUse(clientId, timeAgo);
         if (stockImage) {
           await this.imagesRepository.updateStockImage(clientId, stockImage.SK);
           imageSelected = stockImage;
-        }        
+        }
       } else {
         await this.imagesRepository.deleteNewStockImage(imageSelected.PK, imageSelected.SK);
         await this.imagesRepository.storeStockImage(clientId, imageSelected.SK, imageSelected.source);
@@ -60,7 +73,7 @@ export class ImagesService {
         if (stockImageWarning) {
           await this.imagesRepository.updateStockImage(clientId, stockImageWarning.SK);
           imageSelected = stockImageWarning;
-        }     
+        }
       }
       response = { "url": imageSelected.SK, "clientID": clientId };
     } catch (err) {

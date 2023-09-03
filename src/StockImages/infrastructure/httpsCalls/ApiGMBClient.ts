@@ -15,9 +15,10 @@ export class ApiGMBClient implements ResquestApi {
         headers: {
           'Authorization': `Bearer ${accessToken}`
         }
-      };      
-      const unsplashResponse = await axios(configRequest);
-      response = unsplashResponse.data;
+      };
+
+      const apiResponse = await axios(configRequest);
+      response = apiResponse.data;
 
     } catch (err) {
       console.log(err);

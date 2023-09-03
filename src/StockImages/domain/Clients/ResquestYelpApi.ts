@@ -1,3 +1,3 @@
-export interface ResquestApi {
-  searchImages(page: number, keyword: string): Promise<any>;    
+export interface ResquestYelpApi {
+  searchImages(clientName: string, clientPhone: string): Promise<any>;    
   }

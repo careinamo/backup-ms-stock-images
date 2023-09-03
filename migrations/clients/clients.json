@@ -1,57 +1,75 @@
 [
     {
-        "id": "7db2a19b192f3c4f90bc9257223e6d1df6253c3917d1c4a8f2c729199fc9ebb9",
+        "id": "3bf99ce704eeba77800915c116378d3a6c95210d38cd8b3b8d1912197b025d10",
         "appActive": true,
-        "appUid": "1M8ovgqv86cWRgOIbd5ceaYMUPX2",
+        "appUid": "9AxVpS6yiJUUcuJ0NNtiYDwOQli1",
+        "assignment": {
+            "createdAt": null,
+            "done": false,
+            "email": null,
+            "name": null,
+            "updatedBy": "auto-assignment"
+        },
         "automaticReviews": true,
         "bestTimes": {
-            "Friday": "12",
-            "Monday": "12",
-            "Saturday": "12",
-            "Sunday": "12",
+            "Friday": "13",
+            "Monday": "11",
+            "Saturday": "13",
+            "Sunday": "14",
             "Thursday": "12",
-            "Tuesday": "12",
+            "Tuesday": "11",
             "Wednesday": "12"
         },
         "clientGroups": [
             {
                 "id": "39a4f9c2cf859d23d2945bfa61f17823324d82d08dd75e53839c01e3b7457312",
                 "groupName": "Plumbers "
+            },
+            {
+                "id": "3308d78cc1527f8196e38b5d82e8614c1ed2c35e4e06441aab0de37b82a4f31d",
+                "groupName": "No CS Feed"
+            },
+            {
+                "id": "27c919a3452e25748db873045f4de809056240baeff581d8397b4d9acda475e7",
+                "groupName": "All"
             }
         ],
-        "clientName": "Emergency Plumbing",
+        "clientName": "PNH Plumbing and Wells",
         "countPosts": {
             "error": 0,
-            "posted": 236,
-            "schedule": 640
+            "posted": 1034,
+            "schedule": 291
         },
-        "createdAt": 1669822439262,
-        "gmbId": "77fc7226e05843f5839e417af6cc23df",
+        "createdAt": 1592337156206,
+        "gmbId": "90da76cb9ff449798ac95d35e410a253",
         "mergeFields": {
-            "~Address": "",
+            "~Address": "2123 Poplar Rd",
             "~BestDish": "",
             "~BestProduct": "",
             "~BestService": "",
-            "~City": "Highland Park",
-            "~Name": "Emergency Plumbing",
-            "~Phone": "(312) 532-6435",
-            "~Website": "https://emergencyplumbingusa.com/"
+            "~City": "Stafford",
+            "~CloseHours": "",
+            "~Name": "PNH Plumbing and Wells",
+            "~OpenHours": "",
+            "~Phone": "(540) 286-2388",
+            "~Website": "www.pnhplumbingandwells.com"
         },
-        "smsCount": 1,
+        "postsAppCount": 6,
+        "smsCount": 129,
         "socialnetworks": {
             "facebook": true,
-            "facebookPage": "Emergency Plumbing",
+            "facebookPage": "PNH Plumbing and Well Service",
             "fbFailing": false,
             "gmbFailing": false,
             "googleMyBusiness": true,
-            "googleMyBusinessLocationName": "Emergency Plumbing",
+            "googleMyBusinessLocationName": "PNH Plumbing and Well Service",
             "igFailing": false,
             "twFailing": false,
             "twitter": false,
             "zoho": true,
-            "zohoId": "3359678000145315007"
+            "zohoId": "3359678000031463997"
         },
-        "timeZone": "Eastern Daylight Time - (GMT-4)",
-        "yelpId": "fcceefc31948491ca6ab50678af040a6"
+        "timeZone": "Mountain Daylight Time - (GMT-6)",
+        "yelpId": "975f82bcb95e4bed8c4375f9a2d914cc"
     }
 ]

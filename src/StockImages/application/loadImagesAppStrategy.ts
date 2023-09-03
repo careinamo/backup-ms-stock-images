@@ -1,49 +1,48 @@
-import { ResquestApi } from '@StockImages/domain/ResquestApi';
-import { LoadImagesStrategy } from '../application/LoadImagesStrategy';
+import { ResquestAppApi } from '@StockImages/domain/Clients/ResquestAppApi';
+import { LoadImagesStrategy } from './LoadImagesStrategy';
 
-const UNSPLASH_LIMIT_PER_PAGE: number = parseInt(process.env.UNSPLASH_LIMIT_PER_PAGE);
-const UNSPLASH_LIMIT_IMAGES: number = parseInt(process.env.UNSPLASH_LIMIT_IMAGES);
+const FREEPIK_LIMIT_PER_PAGE: number = parseInt(process.env.FREEPIK_LIMIT_PER_PAGE);
+const FREEPIK_LIMIT_IMAGES: number = parseInt(process.env.FREEPIK_LIMIT_IMAGES);
 
-class loadImagesUnsplashStrategy implements LoadImagesStrategy {
+class loadImagesYelpStrategy implements LoadImagesStrategy {
     constructor(
-        private readonly resquestApi: ResquestApi,
+        private readonly resquestAppApi: ResquestAppApi,
     ) { }
-    public async loadImages(clientId: string, client: any, keyword: string): Promise<any> {
-        console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId: ${clientId} with keyword: ${keyword}`);
+    public async loadImages(clientId: any, client: any, keyword: string): Promise<any> {
+        console.log(`Start loadImagesFreepikStrategy.loadImages  for clientId: ${clientId} with keyword: ${keyword}`);
+
         let collection: any;
 
-        const totalPages = Math.ceil(UNSPLASH_LIMIT_IMAGES / UNSPLASH_LIMIT_PER_PAGE); 
+        const totalPages = Math.ceil(FREEPIK_LIMIT_IMAGES / FREEPIK_LIMIT_PER_PAGE);
 
         const objects = [];
         let counter = 1;
+        const objectsArray = [];
 
         for (let page = 1; page <= totalPages; page++) {
             try {
-                const response = await this.resquestApi.searchImagesByPagination(page, keyword);
-                const data = response.results;
+                const response = await this.resquestAppApi.getImages(clientId);
+                const data = response.body;
+
                 collection = data.map((obj) => {
                     return {
-                        url: obj.urls.regular,
+                        url: obj.url,
                         orderNewImage: counter++,
-                        source: 'unsplash'
+                        source: 'app'
                     };
                 }
                 );
-                objects.push(...collection);
             } catch (error) {
                 console.error('Error. ........:', error.message);
                 break;
             }
-            setTimeout(() => {
-                console.log(`Elemento:`);
-              }, Math.random() * 2000 + 1000);
         }
-        
-        console.log('End loadImagesUnsplashStrategy.loadImages');
-        return objects;
+
+        console.log('End loadImagesFreepikStrategy.loadImages');
+        return collection;
     }
 }
-export default loadImagesUnsplashStrategy;
+export default loadImagesYelpStrategy;
 
 
 // for (let page = 1; page <= totalPages; page++) {

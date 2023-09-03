@@ -6,12 +6,13 @@ import { loadImages, getStockImage } from '@StockImages/functions';
 import dynamoDbConfig from 'resources/dynamodb';
 
 const serverlessConfiguration: AWS = {
-  service: 'ms-images',
+  service: 'ms-stock-images',
   frameworkVersion: '3',
   plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dotenv-plugin'],
   useDotenv: true,
   provider: {
     name: 'aws',
+    stage: 'dev',
     runtime: 'nodejs14.x',
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -25,7 +26,8 @@ const serverlessConfiguration: AWS = {
       {
         Effect: 'Allow',
         Action: [
-          'dynamodb:*'
+          'dynamodb:*',
+          's3:*'
         ],
         Resource: [
           '*'

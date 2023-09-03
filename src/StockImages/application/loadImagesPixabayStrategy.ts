@@ -8,7 +8,7 @@ class loadImagesPixabayStrategy implements LoadImagesStrategy {
     constructor(
         private readonly resquestApi: ResquestApi
     ) { }
-    public async loadImages(clientId: string, keyword: string): Promise<any> {
+    public async loadImages(clientId: string, client: any, keyword: string): Promise<any> {
         console.log(`Start loadImagesUnsplashStrategy.loadImages for clientId: ${clientId} with keyword: ${keyword}`);
         let collection: any;
 

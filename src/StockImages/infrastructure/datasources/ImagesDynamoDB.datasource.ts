@@ -198,6 +198,30 @@ class ImagesDynamoDB implements ImagesRepository {
     console.log(`End imagesRepository.searchImageByOrder`);
   }
 
+  // public async searchImageByOrder(clientId: string): Promise<any> {
+  //   console.log(`Start imagesRepository.searchImageByOrder in table: ${process.env.STOCK_IMAGES_TABLE}`);
+  //   const params = {
+  //     TableName: process.env.STOCK_IMAGES_TABLE,
+  //     IndexName: 'orderNewImageIndex',
+  //     KeyConditionExpression: 'PK = :pk',
+  //     FilterExpression: '#attr = :val',
+  //     ExpressionAttributeNames: {
+  //       '#attr': 'source'
+  //     },
+  //     ExpressionAttributeValues: {
+  //       ':pk': `ns#${clientId}`,
+  //       ':val': 'gmb'
+  //     },
+  //     ScanIndexForward: true
+  //   };
+  //   const result = await document.query(params).promise();
+
+  //   if (result.Items.length > 0){
+  //     return result.Items[0];
+  //   }
+  //   console.log(`End imagesRepository.searchImageByOrder`);
+  // }
+
   public async searchImageByLastUse(clientId: string, lastUse: number): Promise<any> {
     console.log(`Start imagesRepository.searchImageByLastUse in table: ${process.env.STOCK_IMAGES_TABLE}`);
     const params = {
